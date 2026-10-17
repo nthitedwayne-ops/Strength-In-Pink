@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A gallery of strength, support and awareness moments from the Strength in Pink breast cancer awareness campaign in South Africa.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e91e78">
+  <title>Gallery | Strength in Pink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: linear-gradient(180deg, #fff7fb 0%, #fff 26%, #fff 100%); }
+    .gallery-hero { padding: 72px 0 36px; }
+    .gallery-hero h1 { margin-bottom: 16px; }
+    .gallery-hero .eyebrow { margin-bottom: 8px; }
+    .gallery-intro { max-width: 760px; color: var(--muted); font-size: 1.08rem; }
+    .gallery-slider-wrap {
+      padding: 18px 0 28px;
+    }
+    .gallery-slider {
+      position: relative;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      border-radius: 32px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 50px rgba(41, 24, 58, 0.08);
+    }
+    .slides {
+      position: relative;
+      width: 100%;
+      height: min(72vw, 700px);
+      min-height: 420px;
+      max-height: 700px;
+      overflow: hidden;
+      background: #fdf4f8;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      filter: saturate(1.05);
+      background: #f7edf2;
+      border-radius: 20px;
+    }
+    .slide-caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 22px;
+      padding: 18px 22px;
+      border-radius: 18px;
+      background: rgba(41, 24, 58, 0.55);
+      color: #fff;
+      backdrop-filter: blur(4px);
+    }
+    .slide-caption p {
+      margin: 0;
+      color: rgba(255,255,255,0.86);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .slide-caption h2 {
+      margin: 8px 0 0;
+      font-size: clamp(1.5rem, 2vw, 2.4rem);
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px 18px;
+      background: #fff;
+    }
+    .slider-nav {
+      display: flex;
+      gap: 12px;
+    }
+    .slider-btn {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      color: var(--ink);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .slider-btn:hover {
+      background: var(--pink-light);
+      border-color: #f3bdd5;
+    }
+    .slider-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border: 0;
+      border-radius: 50%;
+      background: #d7bfd0;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+    .slider-dot.active {
+      width: 28px;
+      border-radius: 999px;
+      background: var(--pink);
+    }
+    @media (max-width: 720px) {
+      .slides { height: min(85vw, 520px); min-height: 330px; }
+      .slide-caption { left: 18px; right: 18px; bottom: 16px; padding: 14px 16px; }
+      .slider-controls { padding: 14px 16px 16px; }
+      .slider-btn { width: 40px; height: 40px; }
+    }
+    .gallery-card-content {
+      padding: 20px 18px 22px;
+    }
+    .gallery-card-content .eyebrow {
+      margin-bottom: 8px;
+      font-size: 0.72rem;
+    }
+    .gallery-card-content h2 {
+      margin-bottom: 8px;
+      font-size: 1.45rem;
+    }
+    .gallery-card-content p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .gallery-cta {
+      padding: 28px 0 70px;
+    }
+    .gallery-cta-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 26px 28px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #ffeaf3 0%, #fff 100%);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 38px rgba(200, 88, 144, 0.08);
+    }
+    .gallery-cta-panel h2 {
+      margin: 0;
+      font-size: clamp(1.7rem, 2vw, 2.5rem);
+    }
+    .gallery-cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    @media (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery-cta-panel { flex-direction: column; align-items: flex-start; }
+      .gallery-cta-actions { justify-content: flex-start; }
+    }
+    @media (max-width: 720px) {
+      .gallery-hero { padding-top: 52px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-card img { height: 220px; }
+      .gallery-cta-panel { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html#home" aria-label="Pink Hope home">
+        <span class="ribbon" aria-hidden="true">🎗</span>
+        <span><strong>Strength in <span>Pink</span></strong><small>Awareness · Early Detection · More Lives</small></span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">☰</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Main navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#signs">Know the Signs</a>
+        <a href="index.html#help">Screening &amp; Help</a>
+        <a href="index.html#support">Stories &amp; Support</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="index.html#involved">Get Involved</a>
+      </nav>
+      <a class="button button-small" href="https://www.backabuddy.co.za/campaign/strength-in-pink" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">♡</span> Donate</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="gallery-hero">
+      <div class="container">
+        <p class="eyebrow">Strength in Pink gallery</p>
+        <h1>Moments of courage, care, and community.</h1>
+        <p class="gallery-intro">These are the men who stood by me through my healing journey — showing love, strength, and unwavering support when it mattered most. Their presence reminded me that I was never walking this path alone.</p>
+        <div class="button-row">
+          <a class="button" href="index.html#involved">Join the movement <span class="button-icon" aria-hidden="true">→</span></a>
+          <a class="button button-outline" href="index.html#help">Get support</a>
+          <a class="button" href="https://www.backabuddy.co.za/campaign/strength-in-pink" target="_blank" rel="noopener noreferrer"><span class="button-icon" aria-hidden="true">♡</span> Donate</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Gallery images" class="gallery-slider-wrap">
+      <div class="container">
+        <div class="gallery-slider" aria-live="polite">
+          <div id="gallery-slides" class="slides" aria-label="Support photo slideshow"></div>
+          <div class="slider-controls">
+            <div class="slider-nav">
+              <button class="slider-btn" id="prev-slide" type="button" aria-label="Previous photo">&#10094;</button>
+              <button class="slider-btn" id="next-slide" type="button" aria-label="Next photo">&#10095;</button>
+            </div>
+            <div id="slider-dots" class="slider-dots" aria-label="Slide selector"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-cta">
+      <div class="container">
+        <div class="gallery-cta-panel">
+          <h2>Help keep the conversation alive.</h2>
+          <div class="gallery-cta-actions">
+            <a class="button" href="index.html#involved">Get involved</a>
+            <a class="button button-outline" href="index.html#help">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <a class="brand brand-footer" href="index.html#home"><span class="ribbon" aria-hidden="true">🎗</span><span><strong>Strength in <span>Pink</span></strong><small>Awareness · Early Detection · More Lives</small></span></a>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html#signs">Know the Signs</a>
+        <a href="index.html#help">Screening &amp; Help</a>
+        <a href="index.html#support">Support</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="index.html#involved">Get Involved</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom"><p>© <span id="year"></span> Strength in Pink. Awareness saves lives.</p><p>This website provides general information and is not a substitute for professional medical advice.</p></div>
+  </footer>
+
+  <script>
+    const galleryImages = [
+      { src: 'dwayne.jpeg', alt: 'A loving and supportive moment from my healing journey', label: 'Support', title: 'Love and strength' },
+      { src: 'guy%2010.jpeg', alt: 'A man who stood by me during my healing journey', label: 'Support', title: 'Standing by me' },
+      { src: 'guy1.jpeg', alt: 'A man supporting me through my healing journey', label: 'Strength', title: 'By my side' },
+      { src: 'guy11.jpeg', alt: 'A supportive man during a meaningful moment in my recovery', label: 'Care', title: 'Gentle presence' },
+      { src: 'guy12.jpeg', alt: 'A man offering encouragement and comfort', label: 'Hope', title: 'Encouragement' },
+      { src: 'guy14.jpeg', alt: 'A man who helped me feel strong and supported', label: 'Love', title: 'Heart of support' },
+      { src: 'guy2.jpeg', alt: 'A supportive man in my healing journey', label: 'Strength', title: 'Courage' },
+      { src: 'guy3.jpeg', alt: 'A man encouraging me through my healing journey', label: 'Hope', title: 'Believing in me' },
+      { src: 'guy4.jpeg', alt: 'A man who stood by me through a difficult season', label: 'Love', title: 'Steady support' },
+      { src: 'guy5.jpeg', alt: 'A man supporting me through my treatment and recovery', label: 'Healing', title: 'Here for me' },
+      { src: 'guy6.jpeg', alt: 'A man showing love and reassurance during my healing', label: 'Community', title: 'Circle of strength' },
+      { src: 'guy7.jpeg', alt: 'A man who supported me in a moment of healing', label: 'Support', title: 'Quiet strength' },
+      { src: 'guy8.jpeg', alt: 'A meaningful moment with a man who stood by me', label: 'Care', title: 'Together' },
+      { src: 'guy9.jpeg', alt: 'A man who brought comfort and strength during recovery', label: 'Healing', title: 'Comfort' },
+      { src: 'mafedi.jpeg', alt: 'A memory from my healing journey and support network', label: 'Healing', title: 'Supportive memory' },
+      { src: 'mobabi.jpeg', alt: 'Another moment of love and encouragement through healing', label: 'Hope', title: 'Moving forward' },
+      { src: 'pink.jpeg', alt: 'A pink awareness and support image reflecting my journey', label: 'Awareness', title: 'Pink strength' },
+      { src: 'tshepiso.jpeg', alt: 'A survivor moment from the strength in pink journey', label: 'Hope', title: 'Survivor strength' },
+      { src: 'WhatsApp%20Image%202026-10-17%20at%2011.54.28.jpeg', alt: 'Supportive image from the healing journey', label: 'Support', title: 'Precious moment' },
+      { src: 'WhatsApp%20Image%202026-10-17%20at%2011.54.30.jpeg', alt: 'A meaningful support image from my journey', label: 'Care', title: 'Love in action' },
+      { src: 'WhatsApp%20Image%202026-10-17%20at%2011.56.04.jpeg', alt: 'A cherished memory showing strength and love', label: 'Healing', title: 'Cherished memory' }
+    ];
+
+    const slidesContainer = document.getElementById('gallery-slides');
+    const dotsContainer = document.getElementById('slider-dots');
+    const prevButton = document.getElementById('prev-slide');
+    const nextButton = document.getElementById('next-slide');
+
+    let currentIndex = 0;
+
+    const renderSlides = () => {
+      slidesContainer.innerHTML = galleryImages.map((image, index) => `
+        <article class="slide ${index === currentIndex ? 'active' : ''}" aria-label="Slide ${index + 1} of ${galleryImages.length}">
+          <img src="${image.src}" alt="${image.alt}">
+          <div class="slide-caption">
+            <p>${image.label}</p>
+            <h2>${image.title}</h2>
+          </div>
+        </article>
+      `).join('');
+
+      dotsContainer.innerHTML = galleryImages.map((image, index) => `
+        <button class="slider-dot ${index === currentIndex ? 'active' : ''}" type="button" aria-label="Go to slide ${index + 1}" data-index="${index}"></button>
+      `).join('');
+
+      document.querySelectorAll('.slider-dot').forEach((dot) => {
+        dot.addEventListener('click', () => {
+          currentIndex = Number(dot.dataset.index);
+          renderSlides();
+        });
+      });
+    };
+
+    const showNext = () => {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      renderSlides();
+    };
+
+    const showPrev = () => {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      renderSlides();
+    };
+
+    prevButton.addEventListener('click', showPrev);
+    nextButton.addEventListener('click', showNext);
+
+    setInterval(showNext, 5000);
+    renderSlides();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
