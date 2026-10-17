@@ -98,11 +98,11 @@ const getChatResponse = (question) => {
     };
   }
 
-  if (/event|date|venue|time|real men|wear pink/.test(normalizedQuestion)) {
-    return "The Real Men Wear Pink breast cancer awareness drive is on Saturday, 24 October 2026, from 09:00 to 15:00 at Bana Sports Ground, Mabopane.";
+  if (/event|date|venue|time/.test(normalizedQuestion)) {
+    return "The Mabopane Ya Rena breast cancer awareness drive, themed Early detection saves lives, is on Saturday, 24 October 2026, from 09:00 to 15:00 at Bana Sports Ground, Mabopane. It supports cancer fighters, survivors and fallen angels.";
   }
 
-  return "I can help with possible signs, screening information, CANSA support, or the Real Men Wear Pink event. For personal medical advice, please speak with a healthcare professional.";
+  return "I can help with possible signs, screening information, CANSA support, or the Mabopane Ya Rena breast cancer awareness drive. For personal medical advice, please speak with a healthcare professional.";
 };
 
 const sendChatQuestion = (question) => {
